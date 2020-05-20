@@ -27,6 +27,10 @@ function sessionCookie(req, res, next) {
 }
 
 const sourcemapsForSentryOnly = token => (req, res, next) => {
+  console.error('--------------------------------------------------')
+  console.error(req.headers['x-sentry-token'])
+  console.error(token)
+  console.error('--------------------------------------------------')
   // In production we only want to serve source maps for Sentry
   if (!dev && !!token && req.headers['x-sentry-token'] !== token) {
     res
